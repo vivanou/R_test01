@@ -1,26 +1,53 @@
-"use strict";
+/* Задание на урок:
 
-console.log(4 + "5");
-console.log(4 - +"5"); // унарный +, делает число из строки
+1) Создать переменную numberOfFilms и в неё поместить ответ от пользователя на вопрос:
+'Сколько фильмов вы уже посмотрели?'
 
-// инкременты
-let incr = 10,
-    decr = 10;
-// incr++
-// decr--
-console.log(++incr); // сначала увеличиваем, потом используем
-console.log(decr--); // сначала используем, потом уменьшаем
+2) Создать объект personalMovieDB и в него поместить такие свойства:
+    - count - сюда передается ответ на первый вопрос
+    - movies - в это свойство поместить пустой объект
+    - actors - тоже поместить пустой объект
+    - genres - сюда поместить пустой массив
+    - privat - в это свойство поместить boolean(логическое) значение false
 
-console.log(5%2); // остаток от деления
+3) Задайте пользователю по два раза вопросы:
+    - 'Один из последних просмотренных фильмов?'
+    - 'На сколько оцените его?'
+Ответы стоит поместить в отдельные переменные
+Записать ответы в объект movies в формате: 
+    movies: {
+        'logan': '8.1'
+    }
 
-console.log((2 + 2) * 2 == '8'); // скобки, == сравнение по значению а не типу данных
-console.log(2 + 2 * 2 === +'6'); // * выполняется раньше +, сравнение по типу данных и
-                                 // значению, + перед началом строки превращает ее в число
+Проверить, чтобы все работало без ошибок в консоли */
 
-console.log((2 + 2) * 2 != '8'); // то же самое, но "не равно"
-console.log(2 + 2 * 2 !== +'6');
+'use strict';
+// задание 1
+let numberOfFilms = 0;
 
-const ifChecked = true;
-const ifClosed = true;
+//numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
+console.log('numberOfFilms = ' + numberOfFilms);
 
-console.log(ifChecked || !ifClosed);
+// задание 2
+const personalMovieDB = {
+    count: numberOfFilms,
+    movies: {},
+    actors: {},
+    genres: [],
+    privat: false
+
+};
+console.log('personalMovieDB[\'count\'] = ' + personalMovieDB['count']);
+// задание 3
+let lastFilmName1 = prompt('Один из последних просмотренных фильмов?', '');
+let lastFilmRate1 = prompt('На сколько оцените его?', '10');
+let lastFilmName2 = prompt('Один из последних просмотренных фильмов?', '');
+let lastFilmRate2 = prompt('На сколько оцените его?', '10');
+
+// посмоnрим, задан ли объект personalMovieDB.movies ?
+console.log(personalMovieDB.movies);
+//положим в него ответы, задав имена свойств из переменных, содержащих ответы пользователя
+// и выведем их в консоль
+personalMovieDB.movies[lastFilmName1] = lastFilmRate1;
+personalMovieDB.movies[lastFilmName2] = lastFilmRate2;
+console.log(personalMovieDB.movies);
