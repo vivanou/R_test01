@@ -1,137 +1,30 @@
-/* Задание на урок:
-
-1) Автоматизировать вопросы пользователю про фильмы при помощи цикла
-
-2) Сделать так, чтобы пользователь не мог оставить ответ в виде пустой строки,
-отменить ответ или ввести название фильма длинее, чем 50 символов. Если это происходит - 
-возвращаем пользователя к вопросам опять
-
-3) При помощи условий проверить  personalMovieDB.count, и если он меньше 10 - вывести сообщение
-"Просмотрено довольно мало фильмов", если от 10 до 30 - "Вы классический зритель", а если больше - 
-"Вы киноман". А если не подошло ни к одному варианту - "Произошла ошибка"
-
-4) Потренироваться и переписать цикл еще двумя способами*/
-
 'use strict';
 
-let numberOfFilms = 0;
+const str = 'test';
+const arr = [1, 2, 3];
 
+console.log(str.toUpperCase());
+console.log(str);
 
+//поиск подстроки
+const str1 = 'Some fruit';
+console.log(str1.indexOf('fruit'));//выдает позицию, с котрой начинается подстврока,
+                                    // первая позиция - 0
+console.log(str1.indexOf('q')); //выдает -1 если такой подстроки нет
+console.log(str1.length);
+console.log(str1.slice(str1.indexOf('fruit'), str1.length - 1));
+console.log(str1.slice(str1.indexOf('fruit'))); /* если воторого аргумента нет,
+ то вырезает до конца строки */
+console.log(str1.slice(5, -1)); // "-1" - считает от конца строки
+console.log(str1.substring(5));
+console.log(str1.substr(5, 4));
 
-do {
-    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', ''); // если нажать Cancel, то +prompt выдает "0" типа number 
-            // ответ сразу в число +prompt, иначе цикл не работает
-    console.log('numberOfFilms is ' + typeof(numberOfFilms)); // логи)
-    console.log('numberOfFilms = ' + numberOfFilms);
-}
-while (isNaN(numberOfFilms) || (numberOfFilms <= 0)); //повтор если ответ не является положительным числом
+//математика
 
-const personalMovieDB = {  // наша база данных
-    count: numberOfFilms,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false
-};
+const num = 12.2;
+console.log(Math.round(num));
 
-console.log('personalMovieDB[\'count\'] = ' + personalMovieDB['count']);
-
-
-
-let lastFilmName = '',
-    lastFilmRate = 0;
-
-for (let i = 0; i < numberOfFilms; i++) {
-    do { // провека корректности ввода через do-while
-        lastFilmName = String(prompt('Один из последних просмотренных фильмов?', '')); //если нажать Cancel, то prompt выдает "null" типа object 
-        
-        console.log('lastFilmName is ' + typeof(lastFilmName)); // логи
-        console.log('lastFilmName = ' + lastFilmName);
-        
-    }
-    while (lastFilmName === '' || lastFilmName === 'null' ||
-            lastFilmName.length > 50);
-
-    lastFilmRate = +prompt('На сколько оцените его?', '10'); // тут тоже не мешало бы проверить корректность воода но лень
-    personalMovieDB.movies[lastFilmName] = lastFilmRate;
-    
-    console.log(personalMovieDB.movies); // логи
-    console.log(i);
-}
-
-
-
-// задание 4 , другие варианты цикла
-/*
-let lastFilmName = '',
-    lastFilmRate = 0,
-    lastFilmNamecheck = false;
-
-while (numberOfFilms > 0) {
-    lastFilmName = String(prompt('Один из последних просмотренных фильмов?', ''));
-    lastFilmNamecheck = (lastFilmName === '' || lastFilmName === 'null' ||
-    lastFilmName.length > 50);
-
-    if  (lastFilmNamecheck) {
-        continue;
-    }
-    lastFilmRate = +prompt('На сколько оцените его?', '10'); // тут тоже не мешало бы проверить корректность воода но лень
-    personalMovieDB.movies[lastFilmName] = lastFilmRate; // ввод данных в базу
-    numberOfFilms--;
-    console.log(personalMovieDB.movies);
-    console.log('numberOfFilms = ' + numberOfFilms);
-}
-console.log('Complited!')
-*/
-
-
-
-//задание 3
-
-// if (personalMovieDB.count < 10) {
-//     alert('Просмотрено довольно мало фильмов ;-)');
-// } else if (personalMovieDB.count <= 30) {
-//     alert('Вы классический зритель ;-)');
-// } else if (personalMovieDB.count > 30) {
-//     alert('Вы киноман ;-)');
-// }
-
-// задание 3, вар. 2, проверка на отрицательные значения,
-// хотя такие значения невозможны исходя из логики работы кода
-
-
-// if (personalMovieDB.count >= 0) {
-//     if (personalMovieDB.count < 10) {
-//         alert('Просмотрено довольно мало фильмов ;-)');
-//     } else if (personalMovieDB.count <= 30) {
-//         alert('Вы классический зритель ;-)');
-//     } else if (personalMovieDB.count > 30) {
-//         alert('Вы киноман ;-)');
-//     }  
-// } else {
-//     alert('Ошибка!');
-// }
-
-
-// задание 3 вариант 2.1, аккуратней написано
-
-// if (personalMovieDB.count < 0) {
-//     alert('Ошибка!');
-// } else if (personalMovieDB.count < 10) {
-//     alert('Просмотрено довольно мало фильмов ;-)');
-// } else if (personalMovieDB.count <= 30) {
-//     alert('Вы классический зритель ;-)');
-// } else {
-//     alert('Вы киноман ;-)');
-// }
-
-// задание 3 вариант 3
-// тернарный оператор, и не один)))
-
-let message = 
-    (personalMovieDB.count < 0) ? 'Ошибка!' :
-    (personalMovieDB.count < 10) ? 'Просмотрено довольно мало фильмов ;-)' : 
-    (personalMovieDB.count <= 30) ? 'Вы классический зритель ;-)' :
-    'Вы киноман ;-)';
-alert(message);
+const test = '12.2px';
+console.log(parseInt(test)); //строка в целое число
+console.log(parseFloat(test));
 
