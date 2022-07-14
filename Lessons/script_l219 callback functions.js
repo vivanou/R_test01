@@ -5,7 +5,7 @@ function first() {
         console.log(1 + ' (setTimeout())');
     }, 500);
 }
-
+// test comment
 function second() {
     console.log(2);
 }
