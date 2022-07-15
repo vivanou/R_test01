@@ -27,5 +27,3 @@ function done() {
     console.log('Я прошел этот урок!');
 }
 LearnJS('JavaScript', done); //имя функции передаем как параметр
-
-
